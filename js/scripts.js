@@ -22,22 +22,23 @@ function CustomerOrder(customerName, orderType) {
     this.orderType = orderType;
 }
 
-CustomerOrder.prototype.addPizza = function (order) {
-    order.orderId = this.assignOrderId();
-    this.orders[order.orderId] = order;
+CustomerOrder.prototype.addPizza = function (pizza) {
+    pizza.pizzaNumber = this.assignPizzaNumber();
+    this.pizzas[pizza.pizzaNumber] = pizza;
 }
 
 CustomerOrder.prototype.assignPizzaNumber = function () {
-    this.currentOrderId += 1;
-    return this.currentOrderId;
+    this.pizzaNumber += 1;
+    return this.currentPizzaNumber;
 }
 
 
 // Business Logic for Pizza
-function Pizza() {
-    this.toppings = {};
+function Pizza(topping1, topping2, size, pizzaNumber) {
+    this.topping1 = topping1;
+    this.topping2 = topping2;
     this.size = size;
-    this.price = price;
+    this.pizzaNumber = pizzaNumber;
 }
 
 // User Interface Logic
