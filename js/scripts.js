@@ -15,9 +15,9 @@ CurrentOrders.prototype.assignOrderId = function () {
 }
 
 // Business Logic for Customer's Order
-function CustomerOrder(customerName, orderType) {
+function CustomerOrder(customerName, orderType, pizzas) {
     this.customerName = customerName;
-    this.pizzas = {};
+    this.pizzas = pizzas;
     this.pizzaNumber = 0;
     this.orderType = orderType;
 }
@@ -53,8 +53,7 @@ function handleOrder(event) {
     for (pizzasToMake = orderQuantity; pizzasToMake > 0; pizzasToMake--) {
         pizzas.push(pizzasToMake)
     }
-    console.log(pizzas);
-    let customerOrder = new CustomerOrder(customerName, orderType);
+    let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
     currentOrders.addOrder(customerOrder);
     console.log(currentOrders);
 }
