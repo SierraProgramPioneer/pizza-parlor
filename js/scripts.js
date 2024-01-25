@@ -78,11 +78,15 @@ function updatePizzaDetailDisplay(event) {
     const pizzaQuantity = document.getElementById("quantity").value;
 
     // Loop Through Pizza Quantity to Display Pizza Details
+    const pizzaToppingOptions = ["None", "Bacon", "Goat Cheese", "Green Bellpeppers", "Pineapple"];
+
     for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
+        // Topping 1 Label
         const topping1Label = document.createElement("label");
         topping1Label.textContent = "Topping 1:";
         topping1Label.htmlFor = "pizza" + pizzasToDisplay + "-topping1";
 
+        // Topping 1 Select
         const topping1Choice = document.createElement("select");
         topping1Choice.id = "pizza" + pizzasToDisplay + "-topping1";
 
@@ -91,14 +95,43 @@ function updatePizzaDetailDisplay(event) {
         pineapple.textContent = "Pineapple";
         topping1Choice.appendChild(pineapple);
 
+        // Topping 2 Label
         const topping2Label = document.createElement("label");
         topping2Label.textContent = "Topping 2:";
         topping2Label.htmlFor = "pizza" + pizzasToDisplay + "-topping2";
 
+        // Size Label
+        const sizeLabel = document.createElement("label");
+        sizeLabel.textContent = "Size:";
+        sizeLabel.htmlFor = "pizza" + pizzasToDisplay + "-size";
+
+        // Size Select
+        const size = document.createElement("select");
+        size.id = "pizza" + pizzasToDisplay + "-size";
+
+        const small = document.createElement("option");
+        small.value = "small";
+        small.textContent = "Small (8 inch)";
+        size.appendChild(small);
+
+        const medium = document.createElement("option");
+        medium.value = "medium";
+        medium.textContent = "Medium (12 inch)";
+        size.appendChild(medium);
+
+        const large = document.createElement("option");
+        large.value = "large";
+        large.textContent = "Large (18 inch)";
+        size.appendChild(large);
+
+        const space = document.createElement("br");
+
         pizzaDetails.appendChild(topping1Label);
         pizzaDetails.appendChild(topping1Choice);
         pizzaDetails.appendChild(topping2Label);
-        console.log(topping1Label, topping2Label);
+        pizzaDetails.appendChild(sizeLabel);
+        pizzaDetails.appendChild(size);
+        pizzaDetails.appendChild(space);
     }
 }
 
