@@ -58,7 +58,15 @@ function handleOrder(event) {
     console.log(currentOrders);
 }
 
+function updateQuantity(event) {
+    event.preventDefault();
+    console.log("Quantity Change");
+}
+
+
 window.addEventListener("load", function () {
     orderButton = document.querySelector("form");
     orderButton.addEventListener("submit", handleOrder);
+    quantityButton = document.getElementById("quantity");
+    quantityButton.addEventListener("input", updateQuantity);
 }) 
