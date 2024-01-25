@@ -60,7 +60,8 @@ function handleOrder(event) {
 
 function updateQuantity(event) {
     event.preventDefault();
-    console.log("Quantity Change");
+    pizzaQuantity = document.getElementById("quantity").value;
+    console.log(pizzaQuantity);
 }
 
 
