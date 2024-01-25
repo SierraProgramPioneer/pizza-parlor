@@ -48,9 +48,9 @@ function handleOrder(event) {
     event.preventDefault();
     const customerName = document.getElementById("customerName").value;
     const orderType = document.getElementById("orderType").value;
-    const orderQuantity = parseInt(document.getElementById("quantity").value);
+    const pizzaQuantity = parseInt(document.getElementById("quantity").value);
     const pizzas = [];
-    for (pizzasToMake = orderQuantity; pizzasToMake > 0; pizzasToMake--) {
+    for (pizzasToMake = pizzaQuantity; pizzasToMake > 0; pizzasToMake--) {
         pizzas.push(pizzasToMake)
     }
     let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
@@ -58,10 +58,20 @@ function handleOrder(event) {
     console.log(currentOrders);
 }
 
-function updateQuantity(event) {
+function updateQuantityDisplay(event) {
     event.preventDefault();
     pizzaQuantity = document.getElementById("quantity").value;
-    console.log(pizzaQuantity);
+    for (pizzasToDisplay = pizzaQuantity; pizzasToDisplay > 0; pizzasToDisplay--) {
+        let pizzaDetails = document.querySelector("#pizzaDetails");
+        while (pizzaDetails.firstChild) {
+            pizzaDetails.removeChild(pizzaDetails.firstChild);
+        }
+
+        let topping1InputLabel = document.createElement("label");
+        topping1InputLabel.textContent = "Topping 1";
+        pizzaDetails.appendChild(topping1InputLabel);
+
+    }
 }
 
 
@@ -69,5 +79,5 @@ window.addEventListener("load", function () {
     orderButton = document.querySelector("form");
     orderButton.addEventListener("submit", handleOrder);
     quantityButton = document.getElementById("quantity");
-    quantityButton.addEventListener("input", updateQuantity);
+    quantityButton.addEventListener("input", updateQuantityDisplay);
 }) 
