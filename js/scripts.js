@@ -10,7 +10,7 @@ CurrentOrders.prototype.addOrder = function (order) {
 }
 
 CurrentOrders.prototype.assignOrderId = function () {
-    this.currentOrderId = + 1;
+    this.currentOrderId += 1;
     return this.currentOrderId;
 }
 
@@ -34,10 +34,11 @@ let currentOrders = new CurrentOrders();
 
 function handleOrder(event) {
     event.preventDefault();
-    customerName = document.getElementById("customerName").value;
-    orderType = document.getElementById("orderType").value;
+    const customerName = document.getElementById("customerName").value;
+    const orderType = document.getElementById("orderType").value;
     let customerOrder = new CustomerOrder(customerName, orderType);
     currentOrders.addOrder(customerOrder);
+    console.log(currentOrders);
 }
 
 window.addEventListener("load", function () {
