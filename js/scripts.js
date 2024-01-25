@@ -4,15 +4,18 @@ function CurrentOrders() {
     this.currentOrderId = 0;
 }
 
+
 CurrentOrders.prototype.addOrder = function (order) {
     order.orderId = this.assignOrderId();
     this.orders[order.orderId] = order;
 }
 
+
 CurrentOrders.prototype.assignOrderId = function () {
     this.currentOrderId += 1;
     return this.currentOrderId;
 }
+
 
 // Business Logic for Customer's Order
 function CustomerOrder(customerName, orderType, pizzas) {
@@ -22,10 +25,12 @@ function CustomerOrder(customerName, orderType, pizzas) {
     this.orderType = orderType;
 }
 
+
 CustomerOrder.prototype.addPizza = function (pizza) {
     pizza.pizzaNumber = this.assignPizzaNumber();
     this.pizzas[pizza.pizzaNumber] = pizza;
 }
+
 
 CustomerOrder.prototype.assignPizzaNumber = function () {
     this.pizzaNumber += 1;
@@ -39,6 +44,7 @@ function Pizza(topping1, topping2, size) {
     this.topping2 = topping2;
     this.size = size;
 }
+
 
 // User Interface Logic
 let currentOrders = new CurrentOrders();
@@ -58,19 +64,26 @@ function handleOrder(event) {
     console.log(currentOrders);
 }
 
-function updateQuantityDisplay(event) {
+
+function updatePizzaDetailDisplay(event) {
     event.preventDefault();
-    pizzaQuantity = document.getElementById("quantity").value;
-    for (pizzasToDisplay = pizzaQuantity; pizzasToDisplay > 0; pizzasToDisplay--) {
-        let pizzaDetails = document.querySelector("#pizzaDetails");
-        while (pizzaDetails.firstChild) {
-            pizzaDetails.removeChild(pizzaDetails.firstChild);
-        }
 
-        let topping1InputLabel = document.createElement("label");
-        topping1InputLabel.textContent = "Topping 1";
-        pizzaDetails.appendChild(topping1InputLabel);
+    // Clear Current 
+    let pizzaDetails = document.querySelector("#pizzaDetails");
+    while (pizzaDetails.firstChild) {
+        pizzaDetails.removeChild(pizzaDetails.firstChild);
+    }
 
+    // Get Pizza Quantity
+    const pizzaQuantity = document.getElementById("quantity").value;
+
+    // Loop Through Pizza Quantity to Display Pizza Details
+    for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
+        const topping1Label = document.createElement("label");
+        topping1Label.textContent = "Topping 1:";
+        topping1Label.htmlFor = "pizza" + pizzasToDisplay + "-topping1";
+        pizzaDetails.appendChild(topping1Label);
+        console.log(topping1Label);
     }
 }
 
@@ -79,5 +92,5 @@ window.addEventListener("load", function () {
     orderButton = document.querySelector("form");
     orderButton.addEventListener("submit", handleOrder);
     quantityButton = document.getElementById("quantity");
-    quantityButton.addEventListener("input", updateQuantityDisplay);
+    quantityButton.addEventListener("input", updatePizzaDetailDisplay);
 }) 
