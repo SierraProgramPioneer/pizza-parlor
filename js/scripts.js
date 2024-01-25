@@ -18,8 +18,20 @@ CurrentOrders.prototype.assignOrderId = function () {
 function CustomerOrder(customerName, orderType) {
     this.customerName = customerName;
     this.pizzas = {};
+    this.pizzaNumber = 0;
     this.orderType = orderType;
 }
+
+CustomerOrder.prototype.addPizza = function (order) {
+    order.orderId = this.assignOrderId();
+    this.orders[order.orderId] = order;
+}
+
+CustomerOrder.prototype.assignPizzaNumber = function () {
+    this.currentOrderId += 1;
+    return this.currentOrderId;
+}
+
 
 // Business Logic for Pizza
 function Pizza() {
