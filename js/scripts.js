@@ -77,12 +77,11 @@ function updatePizzaDetailDisplay(event) {
     // Get Pizza Quantity
     const pizzaQuantity = document.getElementById("quantity").value;
 
-    // Loop Through Pizza Quantity to Display Pizza Details
+    // Topping & Size Option Arrays
     const pizzaToppingOptions = ["None", "Bacon", "Goat Cheese", "Green Bellpeppers", "Pineapple"];
-
-    // Loop Through Pizza Sizes
     const pizzaSizeOptions = ["Small (8 inch)", "Medium (12 inch)", "Large (18 inch)"];
 
+    // Loop Through Each Pizza to Display Detail Options
     for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
         // Topping 1 Label
         const topping1Label = document.createElement("label");

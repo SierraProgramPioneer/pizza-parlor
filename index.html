@@ -12,17 +12,28 @@
 
 <body>
     <form id="orderDetails">
-        <label for="customerName">Name for Your Order:</label>
+        <h2>Name for Your Order<br></h2>
+        <br>
+        <label for="customerName">Name:</label>
         <input id="customerName" type="text">
+        <br><br>
+        <h2>Delivery or Pick Up?<br></h2>
         <br>
         <select id="orderType">
             <option>Pick Up:</option>
             <option>Delivery:</option>
         </select>
+        <br><br>
+        <h2>How many pizzas do you need?<br></h2>
+        <h4>Minimum of 1 Pizza | Maximum of 10 Pizzas</h4>
         <br>
         <label for="quantity">Number of Pizzas</label>
         <input id="quantity" type="number" value="1" min="1" max="10">
+        <br><br>
         <h2>Pick Your Sizes & Toppings for each Pizza:<br></h2>
+        <h4>Small Pizzas: $10 | Medium Pizzas: $14 | Large Pizzas: $20</h4>
+        <h4>First topping is $1 extra | Second topping is $2 extra</h4>
+        <br>
         <div id="pizzaDetails">
             <label for="pizza1-topping1">Topping 1:</label>
             <select id="pizza1-topping1">
@@ -45,10 +56,11 @@
             <label for="pizza1-size">Size:</label>
             <select id="pizza1-size">
                 <option value="Small (8 inch)">Small (8 inch)</option>
-                <option value="medium">Medium (12 inch)</option>
-                <option value="large">Large (18 inch)</option>
+                <option value="Medium (12 inch)">Medium (12 inch)</option>
+                <option value="Large (18 inch)">Large (18 inch)</option>
             </select>
         </div>
+        <br>
         <button type="submit">Place Your Order!</button>
     </form>
 </body>
