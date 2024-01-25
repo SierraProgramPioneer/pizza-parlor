@@ -82,8 +82,23 @@ function updatePizzaDetailDisplay(event) {
         const topping1Label = document.createElement("label");
         topping1Label.textContent = "Topping 1:";
         topping1Label.htmlFor = "pizza" + pizzasToDisplay + "-topping1";
+
+        const topping1Choice = document.createElement("select");
+        topping1Choice.id = "pizza" + pizzasToDisplay + "-topping1";
+
+        let pineapple = document.createElement('option');
+        pineapple.value = "pineapple";
+        pineapple.textContent = "Pineapple";
+        topping1Choice.appendChild(pineapple);
+
+        const topping2Label = document.createElement("label");
+        topping2Label.textContent = "Topping 2:";
+        topping2Label.htmlFor = "pizza" + pizzasToDisplay + "-topping2";
+
         pizzaDetails.appendChild(topping1Label);
-        console.log(topping1Label);
+        pizzaDetails.appendChild(topping1Choice);
+        pizzaDetails.appendChild(topping2Label);
+        console.log(topping1Label, topping2Label);
     }
 }
 
