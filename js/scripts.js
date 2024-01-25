@@ -89,16 +89,27 @@ function updatePizzaDetailDisplay(event) {
         // Topping 1 Select
         const topping1Choice = document.createElement("select");
         topping1Choice.id = "pizza" + pizzasToDisplay + "-topping1";
-
-        let pineapple = document.createElement('option');
-        pineapple.value = "pineapple";
-        pineapple.textContent = "Pineapple";
-        topping1Choice.appendChild(pineapple);
+        pizzaToppingOptions.forEach((topping) => {
+            let option = document.createElement("option");
+            option.value = topping;
+            option.textContent = topping;
+            topping1Choice.appendChild(option);
+        });
 
         // Topping 2 Label
         const topping2Label = document.createElement("label");
         topping2Label.textContent = "Topping 2:";
         topping2Label.htmlFor = "pizza" + pizzasToDisplay + "-topping2";
+
+        // Topping 2 Select
+        const topping2Choice = document.createElement("select");
+        topping2Choice.id = "pizza" + pizzasToDisplay + "-topping2";
+        pizzaToppingOptions.forEach((topping) => {
+            let option = document.createElement("option");
+            option.value = topping;
+            option.textContent = topping;
+            topping2Choice.appendChild(option);
+        });
 
         // Size Label
         const sizeLabel = document.createElement("label");
@@ -129,6 +140,7 @@ function updatePizzaDetailDisplay(event) {
         pizzaDetails.appendChild(topping1Label);
         pizzaDetails.appendChild(topping1Choice);
         pizzaDetails.appendChild(topping2Label);
+        pizzaDetails.appendChild(topping2Choice);
         pizzaDetails.appendChild(sizeLabel);
         pizzaDetails.appendChild(size);
         pizzaDetails.appendChild(space);
