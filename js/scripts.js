@@ -80,6 +80,9 @@ function updatePizzaDetailDisplay(event) {
     // Loop Through Pizza Quantity to Display Pizza Details
     const pizzaToppingOptions = ["None", "Bacon", "Goat Cheese", "Green Bellpeppers", "Pineapple"];
 
+    // Loop Through Pizza Sizes
+    const pizzaSizeOptions = ["Small (8 inch)", "Medium (12 inch)", "Large (18 inch)"];
+
     for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
         // Topping 1 Label
         const topping1Label = document.createElement("label");
@@ -119,21 +122,12 @@ function updatePizzaDetailDisplay(event) {
         // Size Select
         const size = document.createElement("select");
         size.id = "pizza" + pizzasToDisplay + "-size";
-
-        const small = document.createElement("option");
-        small.value = "small";
-        small.textContent = "Small (8 inch)";
-        size.appendChild(small);
-
-        const medium = document.createElement("option");
-        medium.value = "medium";
-        medium.textContent = "Medium (12 inch)";
-        size.appendChild(medium);
-
-        const large = document.createElement("option");
-        large.value = "large";
-        large.textContent = "Large (18 inch)";
-        size.appendChild(large);
+        pizzaSizeOptions.forEach((sizeOption) => {
+            let option = document.createElement("option");
+            option.value = sizeOption;
+            option.textContent = sizeOption;
+            size.appendChild(option);
+        });
 
         const space = document.createElement("br");
 
