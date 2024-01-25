@@ -34,11 +34,10 @@ CustomerOrder.prototype.assignPizzaNumber = function () {
 
 
 // Business Logic for Pizza
-function Pizza(topping1, topping2, size, pizzaNumber) {
+function Pizza(topping1, topping2, size) {
     this.topping1 = topping1;
     this.topping2 = topping2;
     this.size = size;
-    this.pizzaNumber = pizzaNumber;
 }
 
 // User Interface Logic
@@ -49,6 +48,10 @@ function handleOrder(event) {
     event.preventDefault();
     const customerName = document.getElementById("customerName").value;
     const orderType = document.getElementById("orderType").value;
+    const orderQuantity = document.getElementById("quantity").value;
+    for (pizzas = orderQuantity; pizzas > 0; pizzas--) {
+        console.log("pizza", pizzas);
+    }
     let customerOrder = new CustomerOrder(customerName, orderType);
     currentOrders.addOrder(customerOrder);
     console.log(currentOrders);
