@@ -48,10 +48,12 @@ function handleOrder(event) {
     event.preventDefault();
     const customerName = document.getElementById("customerName").value;
     const orderType = document.getElementById("orderType").value;
-    const orderQuantity = document.getElementById("quantity").value;
-    for (pizzas = orderQuantity; pizzas > 0; pizzas--) {
-        console.log("pizza", pizzas);
+    const orderQuantity = parseInt(document.getElementById("quantity").value);
+    const pizzas = [];
+    for (pizzasToMake = orderQuantity; pizzasToMake > 0; pizzasToMake--) {
+        pizzas.push(pizzasToMake)
     }
+    console.log(pizzas);
     let customerOrder = new CustomerOrder(customerName, orderType);
     currentOrders.addOrder(customerOrder);
     console.log(currentOrders);
