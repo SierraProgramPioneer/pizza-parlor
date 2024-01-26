@@ -184,9 +184,8 @@ function handleOrder(event) {
 
 
 function displayOrderDetails(event) {
-    event.preventDefault();
-    console.log("Details");
-
+    const id = (event.target.id);
+    const orderDetails = currentOrders.orders[id]
 }
 
 
