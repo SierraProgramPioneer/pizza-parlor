@@ -190,15 +190,15 @@ function displayOrderDetails(event) {
     const orderDetailsReverse = orderDetails.reverse();
     orderDetailsReverse.forEach((pizza) => {
         const pizzaNumberValue = document.createElement("li");
-        pizzaNumberValue.textContent = pizza.pizzaNumber;
+        pizzaNumberValue.textContent = "Pizza:" + " " + pizza.pizzaNumber;
         const topping1Value = document.createElement("li");
-        topping1Value.textContent = pizza.topping1;
+        topping1Value.textContent = "Topping 1:" + " " + pizza.topping1;
         const topping2Value = document.createElement("li");
-        topping2Value.textContent = pizza.topping2;
+        topping2Value.textContent = "Topping 2:" + " " + pizza.topping2;
         const sizeValue = document.createElement("li");
-        sizeValue.textContent = pizza.size;
+        sizeValue.textContent = "Size:" + " " + pizza.size;
         const priceValue = document.createElement("li");
-        priceValue.textContent = pizza.price;
+        priceValue.textContent = "Price:" + " " + "$" + pizza.price;
         ul.appendChild(pizzaNumberValue);
         ul.appendChild(topping1Value);
         ul.appendChild(topping2Value);
