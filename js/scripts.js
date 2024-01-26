@@ -90,6 +90,8 @@ function updatePizzaDetailDisplay(event) {
         pizzaDetails.removeChild(pizzaDetails.firstChild);
     }
 
+
+
     // Get Pizza Quantity
     const pizzaQuantity = document.getElementById("quantity").value;
 
