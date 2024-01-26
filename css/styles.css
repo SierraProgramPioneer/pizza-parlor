@@ -1,6 +1,16 @@
 body {
     background-color: rgb(192, 136, 68);
-    color: white;
+    background-image: url('/images/pizza.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    border-radius: 25px;
+}
+
+h1 {
+    font-size: 60px;
+    color: #537724;
+    text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 4px 0 black, 0 -1px black;
 }
 
 .row {
