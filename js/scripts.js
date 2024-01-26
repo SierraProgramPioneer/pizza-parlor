@@ -146,6 +146,16 @@ function updatePizzaDetailDisplay(event) {
     }
 }
 
+function clearPizzaOrderDetails() {
+    let customerName = document.getElementById("customerName");
+    customerName.value = null;
+    let quantity = document.getElementById("quantity");
+    quantity.value = 0;
+    let pizzaDetails = document.querySelector("#pizzaDetails");
+    while (pizzaDetails.firstChild) {
+        pizzaDetails.removeChild(pizzaDetails.firstChild);
+    }
+}
 
 function handleOrder(event) {
     event.preventDefault();
@@ -166,6 +176,7 @@ function handleOrder(event) {
         pizzas.push(newPizza);
     }
     currentOrders.addOrder(customerOrder);
+    clearPizzaOrderDetails();
 }
 
 
