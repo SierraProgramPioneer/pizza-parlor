@@ -5,6 +5,7 @@ body {
     background-size: auto;
     background-position: center;
     border-radius: 25px;
+    color: white;
 }
 
 h1 {
@@ -18,7 +19,7 @@ h1 {
 }
 
 .col-4 {
-    background-color: rgb(47, 34, 17);
+    background-color: #790d2a;
     box-sizing: border-box;
     padding: 20px;
     margin: 10px;
@@ -26,8 +27,13 @@ h1 {
 
 
 .col-7 {
-    background-color: rgb(240, 198, 108);
+    background-color: #858278;
     box-sizing: border-box;
     padding: 20px;
     margin: 10px;
+}
+
+hr {
+    border-color: #ffffff;
+    border-width: 3px;
 }
