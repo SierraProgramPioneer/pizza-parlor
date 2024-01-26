@@ -11,39 +11,50 @@
 </head>
 
 <body>
-    <form id="orderDetails">
-        <h2>Name for Your Order:<br></h2>
-        <br>
-        <label for="customerName"></label>
-        <input id="customerName" type="text" required>
-        <br><br>
-        <h2>Delivery or Pick Up?<br></h2>
-        <br>
-        <label for="orderType"></label>
-        <select id="orderType">
-            <option>Pick Up</option>
-            <option>Delivery</option>
-        </select>
-        <br><br>
-        <h2>How Many Pizzas do You Want?<br></h2>
-        <h4>Minimum of 1 Pizza | Maximum of 10 Pizzas</h4>
-        <br>
-        <label for="quantity"></label>
-        <input id="quantity" type="number" value="0" min="1" max="10">
-        <br><br>
-        <h2>Pick Your Toppings & Size for each Pizza:<br></h2>
-        <h4>Small (8 inch) Pizzas: $10 | Medium (12 inch) Pizzas: $14 | Large (18 inch) Pizzas: $20</h4>
-        <h4>First Topping is $1 extra | Second Topping is $2 extra</h4>
-        <br>
-        <div id="pizzaDetails">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Parker's Pizza Parlor!</h1>
         </div>
-        <br>
-        <button type="submit">Place Your Order!</button>
-        <br><br>
-        <div id="orders">
-            <h2>What We're Cooking!</h2><br>
-            <div id="pizzaOrderDiv"></div>
-    </form>
+        <div class="row">
+            <div class="col-7">
+                <form id="orderDetails">
+                    <h2>Name for Your Order:<br></h2>
+                    <br>
+                    <label for="customerName"></label>
+                    <input id="customerName" type="text" required placeholder="Customer Name">
+                    <br><br>
+                    <h2>Delivery or Pick Up?<br></h2>
+                    <br>
+                    <label for="orderType"></label>
+                    <select id="orderType">
+                        <option>Pick Up</option>
+                        <option>Delivery</option>
+                    </select>
+                    <br><br>
+                    <h2>How Many Pizzas do You Want?<br></h2>
+                    <h4>Minimum of 1 Pizza | Maximum of 10 Pizzas</h4>
+                    <br>
+                    <label for="quantity"></label>
+                    <input id="quantity" type="number" value="0" min="1" max="10">
+                    <br><br>
+                    <h2>Pick Your Toppings & Size for each Pizza:<br></h2>
+                    <h4>Small (8 inch) Pizzas: $10 | Medium (12 inch) Pizzas: $14 | Large (18 inch) Pizzas: $20</h4>
+                    <h4>First Topping is $1 extra | Second Topping is $2 extra</h4>
+                    <br>
+                    <div id="pizzaDetails">
+                    </div>
+                    <br>
+                    <button type="submit">Place Your Order!</button>
+                    <br><br>
+            </div>
+            <div class="col-4">
+                <div id="orders">
+                    <h2>What We're Cooking!</h2><br>
+                    <div id="pizzaOrderDiv"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
