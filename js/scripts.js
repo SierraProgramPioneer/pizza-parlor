@@ -99,6 +99,9 @@ function updatePizzaDetailDisplay(event) {
 
     // Loop Through Each Pizza to Display Detail Options
     for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
+        const pizzaNumber = document.createElement("h3");
+        pizzaNumber.textContent = "Pizza #" + " " + pizzasToDisplay;
+
         // Create Topping 1 Div
         const topping1Div = document.createElement("div")
         topping1Div.setAttribute("class", "input-group mb-3");
@@ -107,11 +110,12 @@ function updatePizzaDetailDisplay(event) {
         const topping1Label = document.createElement("label");
         topping1Label.textContent = "Topping 1:";
         topping1Label.htmlFor = "pizza" + pizzasToDisplay + "-topping1";
+        topping1Label.setAttribute("class", "input-group-text");
 
         // Topping 1 Select
         const topping1Choice = document.createElement("select");
         topping1Choice.id = "pizza" + pizzasToDisplay + "-topping1";
-        topping1Choice.setAttribute("class", "input-group-text");
+        topping1Choice.setAttribute("class", "form-select");
         pizzaToppingOptions.forEach((topping) => {
             let option = document.createElement("option");
             option.value = topping;
@@ -131,11 +135,12 @@ function updatePizzaDetailDisplay(event) {
         const topping2Label = document.createElement("label");
         topping2Label.textContent = "Topping 2:";
         topping2Label.htmlFor = "pizza" + pizzasToDisplay + "-topping2";
+        topping2Label.setAttribute("class", "input-group-text");
 
         // Topping 2 Select
         const topping2Choice = document.createElement("select");
         topping2Choice.id = "pizza" + pizzasToDisplay + "-topping2";
-        topping2Choice.setAttribute("class", "input-group-text");
+        topping2Choice.setAttribute("class", "form-select");
         pizzaToppingOptions.forEach((topping) => {
             let option = document.createElement("option");
             option.value = topping;
@@ -160,7 +165,7 @@ function updatePizzaDetailDisplay(event) {
         // Size Select
         const size = document.createElement("select");
         size.id = "pizza" + pizzasToDisplay + "-size";
-        size.setAttribute("class", "input-group-text");
+        size.setAttribute("class", "form-select");
         pizzaSizeOptions.forEach((sizeOption) => {
             let option = document.createElement("option");
             option.value = sizeOption;
@@ -173,7 +178,7 @@ function updatePizzaDetailDisplay(event) {
         sizeDiv.appendChild(size);
 
         const space = document.createElement("br");
-
+        pizzaDetails.appendChild(pizzaNumber);
         pizzaDetails.appendChild(topping1Div);
         pizzaDetails.appendChild(topping2Div);
         pizzaDetails.appendChild(sizeDiv);

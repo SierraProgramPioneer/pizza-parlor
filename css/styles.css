@@ -2,10 +2,11 @@ body {
     background-color: rgb(192, 136, 68);
     background-image: url('/images/pizza.jpg');
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     background-position: center;
     border-radius: 25px;
     color: white;
+    font-family: arial;
 }
 
 h1 {
@@ -45,4 +46,18 @@ hr {
     border-color: white;
     border-width: 2px;
     padding: 5px;
+    font-weight: bold;
+}
+
+.input-group-text {
+    background-color: #790d2a;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+.form-select,
+.form-control {
+    font-size: 18px;
+    color: black;
 }
