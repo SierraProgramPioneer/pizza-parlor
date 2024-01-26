@@ -8,13 +8,13 @@ function CurrentOrders() {
 CurrentOrders.prototype.addOrder = function (order) {
     order.orderId = this.assignOrderId();
     this.orders[order.orderId] = order;
-}
+};
 
 
 CurrentOrders.prototype.assignOrderId = function () {
     this.currentOrderId += 1;
     return this.currentOrderId;
-}
+};
 
 
 // Business Logic for Customer's Order
@@ -28,7 +28,7 @@ function CustomerOrder(customerName, orderType, pizzas) {
 CustomerOrder.prototype.addPizza = function (pizza, pizzaNumber) {
     pizza.pizzaNumber = pizzaNumber;
     this.pizzas[pizza.pizzaNumber] = pizza;
-}
+};
 
 
 // Business Logic for Pizza
@@ -64,7 +64,7 @@ Pizza.prototype.calculatePrice = function (topping1, topping2, size) {
     }
     this.price = topping1Cost + topping2Cost + sizeCost;
     return this.price;
-}
+};
 
 
 // User Interface Logic
@@ -146,6 +146,7 @@ function updatePizzaDetailDisplay(event) {
     }
 }
 
+
 function clearPizzaOrderDetails() {
     let customerName = document.getElementById("customerName");
     customerName.value = null;
@@ -156,6 +157,7 @@ function clearPizzaOrderDetails() {
         pizzaDetails.removeChild(pizzaDetails.firstChild);
     }
 }
+
 
 function handleOrder(event) {
     event.preventDefault();
@@ -176,7 +178,23 @@ function handleOrder(event) {
         pizzas.push(newPizza);
     }
     currentOrders.addOrder(customerOrder);
+    displayPizzasOrdered(currentOrders);
     clearPizzaOrderDetails();
+}
+
+
+function displayPizzasOrdered(currentOrders) {
+    let orderList = document.querySelector("ul#pizzasOrdered");
+    while (orderList.firstChild) {
+        orderList.removeChild(orderList.firstChild);
+    }
+    Object.keys(currentOrders.orders).forEach(function (key) {
+        const order = currentOrders.orders[key];
+        const li = document.createElement("li");
+        li.append(order.customerName);
+        li.setAttribute("id", order.orderId);
+        orderList.append(li);
+    })
 }
 
 
