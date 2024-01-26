@@ -107,6 +107,7 @@ function updatePizzaDetailDisplay(event) {
         // Topping 1 Select
         const topping1Choice = document.createElement("select");
         topping1Choice.id = "pizza" + pizzasToDisplay + "-topping1";
+        topping1Choice.setAttribute("class", "input-group-text");
         pizzaToppingOptions.forEach((topping) => {
             let option = document.createElement("option");
             option.value = topping;
@@ -122,6 +123,7 @@ function updatePizzaDetailDisplay(event) {
         // Topping 2 Select
         const topping2Choice = document.createElement("select");
         topping2Choice.id = "pizza" + pizzasToDisplay + "-topping2";
+        topping2Choice.setAttribute("class", "input-group-text");
         pizzaToppingOptions.forEach((topping) => {
             let option = document.createElement("option");
             option.value = topping;
@@ -129,14 +131,27 @@ function updatePizzaDetailDisplay(event) {
             topping2Choice.appendChild(option);
         });
 
+        {/* <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div> */}
+
+        // Size Div
+        const sizeDiv = document.createElement("div")
+        sizeDiv.setAttribute("class", "input-group mb-3");
+
+
         // Size Label
         const sizeLabel = document.createElement("label");
         sizeLabel.textContent = "Size:";
         sizeLabel.htmlFor = "pizza" + pizzasToDisplay + "-size";
+        sizeLabel.setAttribute("class", "input-group-text");
+
 
         // Size Select
         const size = document.createElement("select");
         size.id = "pizza" + pizzasToDisplay + "-size";
+        size.setAttribute("class", "form-select");
         pizzaSizeOptions.forEach((sizeOption) => {
             let option = document.createElement("option");
             option.value = sizeOption;
@@ -144,14 +159,18 @@ function updatePizzaDetailDisplay(event) {
             size.appendChild(option);
         });
 
+        // Append to Size Div
+        sizeDiv.appendChild(sizeLabel);
+        sizeDiv.appendChild(size);
+
         const space = document.createElement("br");
 
+        // Append Divs to Display
         pizzaDetails.appendChild(topping1Label);
         pizzaDetails.appendChild(topping1Choice);
         pizzaDetails.appendChild(topping2Label);
         pizzaDetails.appendChild(topping2Choice);
-        pizzaDetails.appendChild(sizeLabel);
-        pizzaDetails.appendChild(size);
+        pizzaDetails.appendChild(sizeDiv);
         pizzaDetails.appendChild(space);
     }
 }
