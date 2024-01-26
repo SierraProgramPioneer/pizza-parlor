@@ -52,17 +52,16 @@ function handleOrder(event) {
     const pizzaQuantity = parseInt(document.getElementById("quantity").value);
     const pizzas = [];
     let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
-    for (pizzasToMake = pizzaQuantity; pizzasToMake > 0; pizzasToMake--) {
-        topping1key = "pizza" + pizzasToMake + "-topping1";
-        topping2key = "pizza" + pizzasToMake + "-topping2";
-        sizekey = "pizza" + pizzasToMake + "-size";
-        console.log(topping1key, topping2key, sizekey);
+    for (pizzaNumber = pizzaQuantity; pizzaNumber > 0; pizzaNumber--) {
+        topping1key = "pizza" + pizzaNumber + "-topping1";
+        topping2key = "pizza" + pizzaNumber + "-topping2";
+        sizekey = "pizza" + pizzaNumber + "-size";
         topping1 = document.getElementById(topping1key).value;
         topping2 = document.getElementById(topping2key).value;
         size = document.getElementById(sizekey).value;
         console.log(topping1, topping2, size);
-        newPizza = new Pizza(pizzasToMake, topping1, topping2, size);
-        customerOrder.addPizza(newPizza);
+        newPizza = new Pizza(pizzaNumber, topping1, topping2, size);
+        pizzas.push(newPizza);
     }
 
     currentOrders.addOrder(customerOrder);
