@@ -63,7 +63,6 @@ Pizza.prototype.calculatePrice = function (topping1, topping2, size) {
         sizeCost = 20;
     }
     this.price = topping1Cost + topping2Cost + sizeCost;
-    console.log(this.price);
     return this.price;
 }
 
@@ -167,7 +166,6 @@ function handleOrder(event) {
         pizzas.push(newPizza);
     }
     currentOrders.addOrder(customerOrder);
-    console.log(currentOrders);
 }
 
 
