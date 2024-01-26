@@ -183,6 +183,13 @@ function handleOrder(event) {
 }
 
 
+function displayOrderDetails(event) {
+    event.preventDefault();
+    console.log("Details");
+
+}
+
+
 function displayPizzasOrdered(currentOrders) {
     let orderList = document.querySelector("ul#pizzasOrdered");
     while (orderList.firstChild) {
@@ -203,4 +210,6 @@ window.addEventListener("load", function () {
     orderButton.addEventListener("submit", handleOrder);
     quantityButton = document.getElementById("quantity");
     quantityButton.addEventListener("input", updatePizzaDetailDisplay);
+    pizzasOrdered = document.querySelector("ul#pizzasOrdered");
+    pizzasOrdered.addEventListener("click", displayOrderDetails);
 }) 
