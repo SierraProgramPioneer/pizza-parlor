@@ -20,33 +20,33 @@
                 <h2 class="text-center">Place Your Order!</h2>
                 <hr>
                 <form id="orderDetails">
-                    <h3>Name for Your Order:<br></h3>
-                    <br>
-                    <label for="customerName"></label>
-                    <input id="customerName" type="text" required placeholder="Customer Name">
-                    <br><br>
-                    <h3>Delivery or Pick Up?<br></h3>
-                    <br>
-                    <label for="orderType"></label>
-                    <select id="orderType">
-                        <option>Pick Up</option>
-                        <option>Delivery</option>
-                    </select>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="customerName">Name for Order</label>
+                        <input id="customerName" class="form-control" type="text" required placeholder="Customer Name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="orderType">Order Type</label>
+                        <select id="orderType" class="form-select">
+                            <option>Pick Up</option>
+                            <option>Delivery</option>
+                        </select>
+                    </div>
+
                     <br><br>
                     <h3>How Many Pizzas do You Want?<br></h3>
-                    <h4>Minimum of 1 Pizza | Maximum of 10 Pizzas</h4>
+                    <h5>Minimum of 1 Pizza | Maximum of 10 Pizzas</h5>
                     <br>
                     <label for="quantity"></label>
                     <input id="quantity" type="number" value="0" min="1" max="10">
                     <br><br>
                     <h3>Pick Your Toppings & Size for each Pizza:<br></h3>
-                    <h4>Small (8 inch) Pizzas: $10 | Medium (12 inch) Pizzas: $14 | Large (18 inch) Pizzas: $20</h4>
-                    <h4>First Topping is $1 extra | Second Topping is $2 extra</h4>
+                    <h5>Small Pizzas: $10 | Medium Pizzas: $14 | Large Pizzas: $20</h5>
+                    <h5>First Topping is $1 extra | Second Topping is $2 extra</h5>
                     <br>
                     <div id="pizzaDetails">
                     </div>
                     <br>
-                    <button type="submit">Place Your Order!</button>
+                    <button type="submit" class="btn btn-warning">Place Your Order!</button>
                     <br><br>
             </div>
             <div class="col-4 rounded">

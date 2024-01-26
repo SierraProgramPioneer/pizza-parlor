@@ -37,3 +37,12 @@ hr {
     border-color: #ffffff;
     border-width: 3px;
 }
+
+.btn.btn-warning {
+    font-size: 20px;
+    color: white;
+    border: solid;
+    border-color: white;
+    border-width: 2px;
+    padding: 5px;
+}
