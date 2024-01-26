@@ -25,6 +25,15 @@ function CustomerOrder(customerName, orderType, pizzas) {
     this.orderTotal = 0;
 }
 
+CustomerOrder.prototype.calculateTotal = function (pizzas, customerOrder) {
+    let orderTotalRunning = 0;
+    pizzas.forEach((pizza) => {
+        const pizzaPrice = pizza.price;
+        orderTotalRunning = orderTotalRunning + pizzaPrice;
+    });
+    customerOrder.orderTotal = orderTotalRunning;
+}
+
 
 CustomerOrder.prototype.addPizza = function (pizza, pizzaNumber) {
     pizza.pizzaNumber = pizzaNumber;
@@ -178,19 +187,21 @@ function handleOrder(event) {
         newPizza.calculatePrice(topping1, topping2, size);
         pizzas.push(newPizza);
     }
+    customerOrder.calculateTotal(pizzas, customerOrder);
     currentOrders.addOrder(customerOrder);
     displayPizzasOrdered(currentOrders);
     clearPizzaOrderDetails();
+
 }
 
 
-function clearDisplayOrderDetails() {
-    let customerName = document.getElementById("customerName");
-    customerName.value = null;
-    let quantity = document.getElementById("quantity");
-    quantity.value = 0;
-    let pizzaDetails = document.querySelector("#pizzaDetails");
-}
+// function clearDisplayOrderDetails() {
+//     let customerName = document.getElementById("customerName");
+//     customerName.value = null;
+//     let quantity = document.getElementById("quantity");
+//     quantity.value = 0;
+//     let pizzaDetails = document.querySelector("#pizzaDetails");
+// }
 
 
 function displayOrderDetails(event) {
@@ -200,7 +211,7 @@ function displayOrderDetails(event) {
     let pizzaOrderDiv = document.querySelector("div#orders");
 
     // Clear Current Details
-    clearDisplayOrderDetails();
+    // clearDisplayOrderDetails();
 
     // Display Order Name
     const orderName = currentOrders.orders[id].customerName;
