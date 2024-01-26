@@ -21,28 +21,23 @@ CurrentOrders.prototype.assignOrderId = function () {
 function CustomerOrder(customerName, orderType, pizzas) {
     this.customerName = customerName;
     this.pizzas = pizzas;
-    this.pizzaNumber = 0;
     this.orderType = orderType;
 }
 
 
-CustomerOrder.prototype.addPizza = function (pizza) {
-    pizza.pizzaNumber = this.assignPizzaNumber();
+CustomerOrder.prototype.addPizza = function (pizza, pizzaNumber) {
+    pizza.pizzaNumber = pizzaNumber;
     this.pizzas[pizza.pizzaNumber] = pizza;
 }
 
 
-CustomerOrder.prototype.assignPizzaNumber = function () {
-    this.pizzaNumber += 1;
-    return this.currentPizzaNumber;
-}
-
-
 // Business Logic for Pizza
-function Pizza(topping1, topping2, size) {
+function Pizza(pizzaNumber, topping1, topping2, size) {
+    this.pizzaNumber = pizzaNumber;
     this.topping1 = topping1;
     this.topping2 = topping2;
     this.size = size;
+    this.pizzaPrice = 0;
 }
 
 
@@ -56,10 +51,20 @@ function handleOrder(event) {
     const orderType = document.getElementById("orderType").value;
     const pizzaQuantity = parseInt(document.getElementById("quantity").value);
     const pizzas = [];
-    for (pizzasToMake = pizzaQuantity; pizzasToMake > 0; pizzasToMake--) {
-        pizzas.push(pizzasToMake)
-    }
     let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
+    for (pizzasToMake = pizzaQuantity; pizzasToMake > 0; pizzasToMake--) {
+        topping1key = "pizza" + pizzasToMake + "-topping1";
+        topping2key = "pizza" + pizzasToMake + "-topping2";
+        sizekey = "pizza" + pizzasToMake + "-size";
+        console.log(topping1key, topping2key, sizekey);
+        topping1 = document.getElementById(topping1key).value;
+        topping2 = document.getElementById(topping2key).value;
+        size = document.getElementById(sizekey).value;
+        console.log(topping1, topping2, size);
+        newPizza = new Pizza(pizzasToMake, topping1, topping2, size);
+        customerOrder.addPizza(newPizza);
+    }
+
     currentOrders.addOrder(customerOrder);
     console.log(currentOrders);
 }
