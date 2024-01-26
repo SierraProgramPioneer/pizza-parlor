@@ -22,6 +22,7 @@ function CustomerOrder(customerName, orderType, pizzas) {
     this.customerName = customerName;
     this.pizzas = pizzas;
     this.orderType = orderType;
+    this.orderTotal = 0;
 }
 
 
@@ -185,32 +186,49 @@ function handleOrder(event) {
 
 function displayOrderDetails(event) {
     const id = (event.target.id);
-    let ul = document.querySelector("ul#pizzasOrdered");
+
+    // Clear Current Details
+    let pizzaOrderDiv = document.querySelector("div#pizzasOrdered");
+
+
+    // Display Order Name
+    const orderName = currentOrders.orders[id].customerName;
+    const orderNameValue = document.createElement("h6");
+    orderNameValue.textContent = "Order Name:" + " " + orderName;
+    pizzaOrderDiv.appendChild(orderNameValue);
+
+    // Display Order Type
+    const orderType = currentOrders.orders[id].orderType;
+    const orderTypeValue = document.createElement("h6");
+    orderTypeValue.textContent = "Order Type:" + " " + orderType;
+    pizzaOrderDiv.appendChild(orderTypeValue);
+
+    // Display Order Total
+    const orderTotal = currentOrders.orders[id].orderTotal;
+    const orderTotalValue = document.createElement("h6");
+    orderTotalValue.textContent = "Order Total:" + " " + "$" + orderTotal;
+    pizzaOrderDiv.appendChild(orderTotalValue);
+
+
+    // Display Pizzas' Details
     const orderDetails = currentOrders.orders[id].pizzas;
     const orderDetailsReverse = orderDetails.reverse();
     orderDetailsReverse.forEach((pizza) => {
-        const pizzaNumberValue = document.createElement("li");
+        const pizzaNumberValue = document.createElement("h6");
         pizzaNumberValue.textContent = "Pizza:" + " " + pizza.pizzaNumber;
-        const topping1Value = document.createElement("li");
-        topping1Value.textContent = "Topping 1:" + " " + pizza.topping1;
-        const topping2Value = document.createElement("li");
-        topping2Value.textContent = "Topping 2:" + " " + pizza.topping2;
-        const sizeValue = document.createElement("li");
-        sizeValue.textContent = "Size:" + " " + pizza.size;
-        const priceValue = document.createElement("li");
+        const pizzaDetails = document.createElement("h6");
+        pizzaDetails.textContent = "Topping 1:" + " " + pizza.topping1 + " " + " | " + "Topping 2:" + " " + pizza.topping2 + " " + " | " + "Size:" + " " + pizza.size;
+        const priceValue = document.createElement("h6");
         priceValue.textContent = "Price:" + " " + "$" + pizza.price;
-        ul.appendChild(pizzaNumberValue);
-        ul.appendChild(topping1Value);
-        ul.appendChild(topping2Value);
-        ul.appendChild(sizeValue);
-        ul.appendChild(priceValue);
+        pizzaOrderDiv.appendChild(pizzaNumberValue);
+        pizzaOrderDiv.appendChild(pizzaDetails);
+        pizzaOrderDiv.appendChild(priceValue);
     });
-
 }
 
 
 function displayPizzasOrdered(currentOrders) {
-    let orderList = document.querySelector("ul#pizzasOrdered");
+    let orderList = document.querySelector("div#pizzasOrdered");
     while (orderList.firstChild) {
         orderList.removeChild(orderList.firstChild);
     }
@@ -229,6 +247,6 @@ window.addEventListener("load", function () {
     orderButton.addEventListener("submit", handleOrder);
     quantityButton = document.getElementById("quantity");
     quantityButton.addEventListener("input", updatePizzaDetailDisplay);
-    pizzasOrdered = document.querySelector("ul#pizzasOrdered");
+    pizzasOrdered = document.querySelector("div#pizzasOrdered");
     pizzasOrdered.addEventListener("click", displayOrderDetails);
 }) 
