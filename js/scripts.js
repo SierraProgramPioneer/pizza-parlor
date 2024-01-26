@@ -184,12 +184,23 @@ function handleOrder(event) {
 }
 
 
+function clearDisplayOrderDetails() {
+    let customerName = document.getElementById("customerName");
+    customerName.value = null;
+    let quantity = document.getElementById("quantity");
+    quantity.value = 0;
+    let pizzaDetails = document.querySelector("#pizzaDetails");
+}
+
+
 function displayOrderDetails(event) {
     const id = (event.target.id);
 
-    // Clear Current Details
-    let pizzaOrderDiv = document.querySelector("div#pizzasOrdered");
+    // Get Pizza Order Detail Div
+    let pizzaOrderDiv = document.querySelector("div#orders");
 
+    // Clear Current Details
+    clearDisplayOrderDetails();
 
     // Display Order Name
     const orderName = currentOrders.orders[id].customerName;
@@ -228,7 +239,7 @@ function displayOrderDetails(event) {
 
 
 function displayPizzasOrdered(currentOrders) {
-    let orderList = document.querySelector("div#pizzasOrdered");
+    let orderList = document.querySelector("div#orders");
     while (orderList.firstChild) {
         orderList.removeChild(orderList.firstChild);
     }
@@ -247,6 +258,6 @@ window.addEventListener("load", function () {
     orderButton.addEventListener("submit", handleOrder);
     quantityButton = document.getElementById("quantity");
     quantityButton.addEventListener("input", updatePizzaDetailDisplay);
-    pizzasOrdered = document.querySelector("div#pizzasOrdered");
+    pizzasOrdered = document.querySelector("div#orders");
     pizzasOrdered.addEventListener("click", displayOrderDetails);
 }) 
