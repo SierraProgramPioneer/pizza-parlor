@@ -37,36 +37,39 @@ function Pizza(pizzaNumber, topping1, topping2, size) {
     this.topping1 = topping1;
     this.topping2 = topping2;
     this.size = size;
-    this.pizzaPrice = 0;
+}
+
+
+Pizza.prototype.calculatePrice = function (topping1, topping2, size) {
+    if (topping1 === "None") {
+        topping1Cost = 0
+    }
+    else {
+        topping1Cost = 1;
+    }
+    if (topping2 === "None") {
+        topping2Cost = 0
+    }
+    else {
+        topping2Cost = 2;
+    }
+    if (size === "Small (8 inch)") {
+        sizeCost = 10;
+    }
+    else if (size === "Medium (12 inch)") {
+        sizeCost = 14;
+    }
+    else {
+        sizeCost = 20;
+    }
+    this.price = topping1Cost + topping2Cost + sizeCost;
+    console.log(this.price);
+    return this.price;
 }
 
 
 // User Interface Logic
 let currentOrders = new CurrentOrders();
-
-
-function handleOrder(event) {
-    event.preventDefault();
-    const customerName = document.getElementById("customerName").value;
-    const orderType = document.getElementById("orderType").value;
-    const pizzaQuantity = parseInt(document.getElementById("quantity").value);
-    const pizzas = [];
-    let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
-    for (pizzaNumber = pizzaQuantity; pizzaNumber > 0; pizzaNumber--) {
-        topping1key = "pizza" + pizzaNumber + "-topping1";
-        topping2key = "pizza" + pizzaNumber + "-topping2";
-        sizekey = "pizza" + pizzaNumber + "-size";
-        topping1 = document.getElementById(topping1key).value;
-        topping2 = document.getElementById(topping2key).value;
-        size = document.getElementById(sizekey).value;
-        console.log(topping1, topping2, size);
-        newPizza = new Pizza(pizzaNumber, topping1, topping2, size);
-        pizzas.push(newPizza);
-    }
-
-    currentOrders.addOrder(customerOrder);
-    console.log(currentOrders);
-}
 
 
 function updatePizzaDetailDisplay(event) {
@@ -142,6 +145,29 @@ function updatePizzaDetailDisplay(event) {
         pizzaDetails.appendChild(size);
         pizzaDetails.appendChild(space);
     }
+}
+
+
+function handleOrder(event) {
+    event.preventDefault();
+    const customerName = document.getElementById("customerName").value;
+    const orderType = document.getElementById("orderType").value;
+    const pizzaQuantity = parseInt(document.getElementById("quantity").value);
+    const pizzas = [];
+    let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
+    for (pizzaNumber = pizzaQuantity; pizzaNumber > 0; pizzaNumber--) {
+        const topping1key = "pizza" + pizzaNumber + "-topping1";
+        const topping2key = "pizza" + pizzaNumber + "-topping2";
+        const sizekey = "pizza" + pizzaNumber + "-size";
+        const topping1 = document.getElementById(topping1key).value;
+        const topping2 = document.getElementById(topping2key).value;
+        const size = document.getElementById(sizekey).value;
+        const newPizza = new Pizza(pizzaNumber, topping1, topping2, size);
+        newPizza.calculatePrice(topping1, topping2, size);
+        pizzas.push(newPizza);
+    }
+    currentOrders.addOrder(customerOrder);
+    console.log(currentOrders);
 }
 
 
