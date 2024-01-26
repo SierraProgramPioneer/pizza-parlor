@@ -99,6 +99,10 @@ function updatePizzaDetailDisplay(event) {
 
     // Loop Through Each Pizza to Display Detail Options
     for (let pizzasToDisplay = 1; pizzasToDisplay <= pizzaQuantity; pizzasToDisplay++) {
+        // Create Topping 1 Div
+        const topping1Div = document.createElement("div")
+        topping1Div.setAttribute("class", "input-group mb-3");
+
         // Topping 1 Label
         const topping1Label = document.createElement("label");
         topping1Label.textContent = "Topping 1:";
@@ -114,6 +118,14 @@ function updatePizzaDetailDisplay(event) {
             option.textContent = topping;
             topping1Choice.appendChild(option);
         });
+
+        // Append Topping 1 Label & Options to Topping 1 Div
+        topping1Div.appendChild(topping1Label);
+        topping1Div.appendChild(topping1Choice);
+
+        // Create Topping 2 Div
+        const topping2Div = document.createElement("div")
+        topping2Div.setAttribute("class", "input-group mb-3");
 
         // Topping 2 Label
         const topping2Label = document.createElement("label");
@@ -131,15 +143,13 @@ function updatePizzaDetailDisplay(event) {
             topping2Choice.appendChild(option);
         });
 
-        {/* <div class="input-group mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-</div> */}
+        // Append Topping 2 Label & Options to Topping 2 Div
+        topping2Div.appendChild(topping2Label);
+        topping2Div.appendChild(topping2Choice);
 
         // Size Div
         const sizeDiv = document.createElement("div")
         sizeDiv.setAttribute("class", "input-group mb-3");
-
 
         // Size Label
         const sizeLabel = document.createElement("label");
@@ -147,11 +157,10 @@ function updatePizzaDetailDisplay(event) {
         sizeLabel.htmlFor = "pizza" + pizzasToDisplay + "-size";
         sizeLabel.setAttribute("class", "input-group-text");
 
-
         // Size Select
         const size = document.createElement("select");
         size.id = "pizza" + pizzasToDisplay + "-size";
-        size.setAttribute("class", "form-select");
+        size.setAttribute("class", "input-group-text");
         pizzaSizeOptions.forEach((sizeOption) => {
             let option = document.createElement("option");
             option.value = sizeOption;
@@ -159,17 +168,14 @@ function updatePizzaDetailDisplay(event) {
             size.appendChild(option);
         });
 
-        // Append to Size Div
+        // Append Size Label & Options to Size Div
         sizeDiv.appendChild(sizeLabel);
         sizeDiv.appendChild(size);
 
         const space = document.createElement("br");
 
-        // Append Divs to Display
-        pizzaDetails.appendChild(topping1Label);
-        pizzaDetails.appendChild(topping1Choice);
-        pizzaDetails.appendChild(topping2Label);
-        pizzaDetails.appendChild(topping2Choice);
+        pizzaDetails.appendChild(topping1Div);
+        pizzaDetails.appendChild(topping2Div);
         pizzaDetails.appendChild(sizeDiv);
         pizzaDetails.appendChild(space);
     }
