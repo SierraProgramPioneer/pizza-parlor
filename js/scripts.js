@@ -185,7 +185,27 @@ function handleOrder(event) {
 
 function displayOrderDetails(event) {
     const id = (event.target.id);
-    const orderDetails = currentOrders.orders[id]
+    let ul = document.querySelector("ul#pizzasOrdered");
+    const orderDetails = currentOrders.orders[id].pizzas;
+    const orderDetailsReverse = orderDetails.reverse();
+    orderDetailsReverse.forEach((pizza) => {
+        const pizzaNumberValue = document.createElement("li");
+        pizzaNumberValue.textContent = pizza.pizzaNumber;
+        const topping1Value = document.createElement("li");
+        topping1Value.textContent = pizza.topping1;
+        const topping2Value = document.createElement("li");
+        topping2Value.textContent = pizza.topping2;
+        const sizeValue = document.createElement("li");
+        sizeValue.textContent = pizza.size;
+        const priceValue = document.createElement("li");
+        priceValue.textContent = pizza.price;
+        ul.appendChild(pizzaNumberValue);
+        ul.appendChild(topping1Value);
+        ul.appendChild(topping2Value);
+        ul.appendChild(sizeValue);
+        ul.appendChild(priceValue);
+    });
+
 }
 
 
