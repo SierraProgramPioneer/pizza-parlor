@@ -91,7 +91,7 @@
     
 ## Known Bugs
 
-* No known bugs, program runs as expected.  Please contact the creator if bug is discovered.
+* Currently the placed order card duplicates if customer name is clicked more than once.
 * Last updated: January 28, 2024.
 
 ## License
