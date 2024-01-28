@@ -91,7 +91,7 @@
     
 ## Known Bugs
 
-* Currently the placed order card duplicates if customer name is clicked more than once.
+* Currently the placed order card duplicates if customer name is clicked more than once. Background image does not load on gh-pages version.
 * Last updated: January 28, 2024.
 
 ## License
