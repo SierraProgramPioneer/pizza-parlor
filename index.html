@@ -31,7 +31,6 @@
                         <label class="input-group-text" for="customerName">Name for Order</label>
                         <input id="customerName" class="form-control" type="text" required placeholder="Customer Name">
                     </div>
-
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="orderType">Order Type</label>
                         <select id="orderType" class="form-select">
@@ -52,14 +51,17 @@
                     <br>
                     <button type="submit" class="btn btn-warning">Place Your Order!</button>
                     <br><br>
+                </form>
             </div>
+
             <div class="col-4 rounded">
                 <h2 class="text-center">What We're Cooking!</h2>
                 <hr>
+                <h4 id="noOrders">No Orders in Queue! You're First in Line.</h4>
                 <div id="orders">
+                    <div id="pizzaOrderDetails">
 
-                    <div id="pizzaOrderDiv"></div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -25,6 +25,7 @@ function CustomerOrder(customerName, orderType, pizzas) {
     this.orderTotal = 0;
 }
 
+
 CustomerOrder.prototype.calculateTotal = function (pizzas, customerOrder) {
     let orderTotalRunning = 0;
     pizzas.forEach((pizza) => {
@@ -89,8 +90,6 @@ function updatePizzaDetailDisplay(event) {
     while (pizzaDetails.firstChild) {
         pizzaDetails.removeChild(pizzaDetails.firstChild);
     }
-
-
 
     // Get Pizza Quantity
     const pizzaQuantity = document.getElementById("quantity").value;
@@ -227,23 +226,12 @@ function handleOrder(event) {
 }
 
 
-// function clearDisplayOrderDetails() {
-//     let customerName = document.getElementById("customerName");
-//     customerName.value = null;
-//     let quantity = document.getElementById("quantity");
-//     quantity.value = 0;
-//     let pizzaDetails = document.querySelector("#pizzaDetails");
-// }
-
 
 function displayOrderDetails(event) {
     const id = (event.target.id);
 
     // Get Pizza Order Detail Div
-    let pizzaOrderDiv = document.querySelector("div#orders");
-
-    // Clear Current Details
-    // clearDisplayOrderDetails();
+    let pizzaOrderDiv = document.querySelector("div#pizzaOrderDetails");
 
     // Display Order Name
     const orderName = currentOrders.orders[id].customerName;
@@ -282,16 +270,18 @@ function displayOrderDetails(event) {
 
 
 function displayPizzasOrdered(currentOrders) {
+    let noOrders = document.getElementById("noOrders");
+    noOrders.textContent = null;
     let orderList = document.querySelector("div#orders");
     while (orderList.firstChild) {
         orderList.removeChild(orderList.firstChild);
     }
     Object.keys(currentOrders.orders).forEach(function (key) {
         const order = currentOrders.orders[key];
-        const li = document.createElement("li");
-        li.append(order.customerName);
-        li.setAttribute("id", order.orderId);
-        orderList.append(li);
+        const h5 = document.createElement("h5");
+        h5.append(order.customerName);
+        h5.setAttribute("id", order.orderId);
+        orderList.append(h5);
     })
 }
 
