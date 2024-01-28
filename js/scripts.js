@@ -230,27 +230,28 @@ function handleOrder(event) {
 function displayOrderDetails(event) {
     const id = (event.target.id);
 
-    // Get Pizza Order Detail Div
-    let pizzaOrderDiv = document.querySelector("div#pizzaOrderDetails");
+    // Get Pizza Order Div
+    let pizzaOrderDiv = document.getElementById("orderDetailsDisplay");
+    console.log(pizzaOrderDiv);
 
     // Display Order Name
-    const orderName = currentOrders.orders[id].customerName;
-    const orderNameValue = document.createElement("h6");
-    orderNameValue.textContent = "Order Name:" + " " + orderName;
-    pizzaOrderDiv.appendChild(orderNameValue);
+    const orderValue = currentOrders.orders[id].customerName;
+    console.log(orderValue);
+    const orderNameElement = document.createElement("h6");
+    orderNameElement.textContent = "Order Name:" + " " + orderValue;
+    pizzaOrderDiv.appendChild(orderNameElement);
 
     // Display Order Type
-    const orderType = currentOrders.orders[id].orderType;
-    const orderTypeValue = document.createElement("h6");
-    orderTypeValue.textContent = "Order Type:" + " " + orderType;
-    pizzaOrderDiv.appendChild(orderTypeValue);
+    const orderTypeValue = currentOrders.orders[id].orderType;
+    const orderTypeElement = document.createElement("h6");
+    orderTypeElement.textContent = "Order Type:" + " " + orderTypeValue;
+    pizzaOrderDiv.appendChild(orderTypeElement);
 
     // Display Order Total
     const orderTotal = currentOrders.orders[id].orderTotal;
     const orderTotalValue = document.createElement("h6");
     orderTotalValue.textContent = "Order Total:" + " " + "$" + orderTotal;
     pizzaOrderDiv.appendChild(orderTotalValue);
-
 
     // Display Pizzas' Details
     const orderDetails = currentOrders.orders[id].pizzas;
@@ -266,16 +267,19 @@ function displayOrderDetails(event) {
         pizzaOrderDiv.appendChild(pizzaDetails);
         pizzaOrderDiv.appendChild(priceValue);
     });
+
 }
 
 
 function displayPizzasOrdered(currentOrders) {
     let noOrders = document.getElementById("noOrders");
     noOrders.textContent = null;
+
     let orderList = document.querySelector("div#orders");
     while (orderList.firstChild) {
         orderList.removeChild(orderList.firstChild);
     }
+
     Object.keys(currentOrders.orders).forEach(function (key) {
         const order = currentOrders.orders[key];
         const h5 = document.createElement("h5");
@@ -283,6 +287,10 @@ function displayPizzasOrdered(currentOrders) {
         h5.setAttribute("id", order.orderId);
         orderList.append(h5);
     })
+
+    const orderDetailsDiv = document.createElement("div");
+    orderDetailsDiv.setAttribute("id", "orderDetailsDisplay");
+    orderList.appendChild(orderDetailsDiv);
 }
 
 
