@@ -1,4 +1,4 @@
-// Business Logic for Pizza Shop
+// Business Logic for Pizza Parlor
 function CurrentOrders() {
     this.orders = {};
     this.currentOrderId = 0;
@@ -20,19 +20,9 @@ CurrentOrders.prototype.assignOrderId = function () {
 // Business Logic for Customer's Order
 function CustomerOrder(customerName, orderType, pizzas) {
     this.customerName = customerName;
-    this.pizzas = pizzas;
     this.orderType = orderType;
+    this.pizzas = pizzas;
     this.orderTotal = 0;
-}
-
-
-CustomerOrder.prototype.calculateTotal = function (pizzas, customerOrder) {
-    let orderTotalRunning = 0;
-    pizzas.forEach((pizza) => {
-        const pizzaPrice = pizza.price;
-        orderTotalRunning = orderTotalRunning + pizzaPrice;
-    });
-    customerOrder.orderTotal = orderTotalRunning;
 }
 
 
@@ -40,6 +30,16 @@ CustomerOrder.prototype.addPizza = function (pizza, pizzaNumber) {
     pizza.pizzaNumber = pizzaNumber;
     this.pizzas[pizza.pizzaNumber] = pizza;
 };
+
+
+CustomerOrder.prototype.calculateTotal = function (pizzas, customerOrder) {
+    let orderTotal = 0;
+    pizzas.forEach((pizza) => {
+        const pizzaPrice = pizza.price;
+        orderTotal = orderTotal + pizzaPrice;
+    });
+    customerOrder.orderTotal = orderTotal;
+}
 
 
 // Business Logic for Pizza
@@ -82,7 +82,32 @@ Pizza.prototype.calculatePrice = function (topping1, topping2, size) {
 let currentOrders = new CurrentOrders();
 
 
-function updatePizzaDetailDisplay(event) {
+function handleOrder(event) {
+    event.preventDefault();
+    const customerName = document.getElementById("customerName").value;
+    const orderType = document.getElementById("orderType").value;
+    const pizzaQuantity = parseInt(document.getElementById("quantity").value);
+    const pizzas = [];
+    let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
+    for (pizzaNumber = pizzaQuantity; pizzaNumber > 0; pizzaNumber--) {
+        const topping1key = "pizza" + pizzaNumber + "-topping1";
+        const topping2key = "pizza" + pizzaNumber + "-topping2";
+        const sizekey = "pizza" + pizzaNumber + "-size";
+        const topping1 = document.getElementById(topping1key).value;
+        const topping2 = document.getElementById(topping2key).value;
+        const size = document.getElementById(sizekey).value;
+        const newPizza = new Pizza(pizzaNumber, topping1, topping2, size);
+        newPizza.calculatePrice(topping1, topping2, size);
+        pizzas.push(newPizza);
+    }
+    customerOrder.calculateTotal(pizzas, customerOrder);
+    currentOrders.addOrder(customerOrder);
+    displayPizzaQueue(currentOrders);
+    clearPlaceOrderDetails();
+}
+
+
+function updatePizzaDetailCount(event) {
     event.preventDefault();
 
     // Clear Current 
@@ -188,7 +213,7 @@ function updatePizzaDetailDisplay(event) {
 }
 
 
-function clearPizzaOrderDetails() {
+function clearPlaceOrderDetails() {
     let customerName = document.getElementById("customerName");
     customerName.value = null;
     let quantity = document.getElementById("quantity");
@@ -200,44 +225,32 @@ function clearPizzaOrderDetails() {
 }
 
 
-function handleOrder(event) {
-    event.preventDefault();
-    const customerName = document.getElementById("customerName").value;
-    const orderType = document.getElementById("orderType").value;
-    const pizzaQuantity = parseInt(document.getElementById("quantity").value);
-    const pizzas = [];
-    let customerOrder = new CustomerOrder(customerName, orderType, pizzas);
-    for (pizzaNumber = pizzaQuantity; pizzaNumber > 0; pizzaNumber--) {
-        const topping1key = "pizza" + pizzaNumber + "-topping1";
-        const topping2key = "pizza" + pizzaNumber + "-topping2";
-        const sizekey = "pizza" + pizzaNumber + "-size";
-        const topping1 = document.getElementById(topping1key).value;
-        const topping2 = document.getElementById(topping2key).value;
-        const size = document.getElementById(sizekey).value;
-        const newPizza = new Pizza(pizzaNumber, topping1, topping2, size);
-        newPizza.calculatePrice(topping1, topping2, size);
-        pizzas.push(newPizza);
-    }
-    customerOrder.calculateTotal(pizzas, customerOrder);
-    currentOrders.addOrder(customerOrder);
-    displayPizzasOrdered(currentOrders);
-    clearPizzaOrderDetails();
+function displayPizzaQueue(currentOrders) {
+    let noOrders = document.getElementById("noOrders");
+    noOrders.textContent = null;
 
+    let orderList = document.querySelector("div#orders");
+    while (orderList.firstChild) {
+        orderList.removeChild(orderList.firstChild);
+    }
+
+    Object.keys(currentOrders.orders).forEach(function (key) {
+        const order = currentOrders.orders[key];
+        const h5 = document.createElement("h5");
+        h5.append(order.customerName);
+        h5.setAttribute("id", order.orderId);
+        orderList.append(h5);
+    })
 }
 
 
-
-function displayOrderDetails(event) {
+function displayOrderedPizzaDetails(event) {
     const id = (event.target.id);
 
-    // Get Pizza Order Div
-    let orderList = document.querySelector("div#orders");
+    // Create Order Details Card
     let pizzaOrderDiv = document.createElement("div");
     pizzaOrderDiv.setAttribute("id", "orderDetailsDisplay");
     pizzaOrderDiv.setAttribute("class", "card");
-    orderList.appendChild(pizzaOrderDiv);
-
-    // let pizzaOrderDiv = document.getElementById("orderDetailsDisplay");
 
     // Display Order Name
     const orderValue = currentOrders.orders[id].customerName;
@@ -272,33 +285,17 @@ function displayOrderDetails(event) {
         pizzaOrderDiv.appendChild(priceValue);
     });
 
-}
-
-
-function displayPizzasOrdered(currentOrders) {
-    let noOrders = document.getElementById("noOrders");
-    noOrders.textContent = null;
-
+    // Add Pizza Detail to Order Div
     let orderList = document.querySelector("div#orders");
-    while (orderList.firstChild) {
-        orderList.removeChild(orderList.firstChild);
-    }
-
-    Object.keys(currentOrders.orders).forEach(function (key) {
-        const order = currentOrders.orders[key];
-        const h5 = document.createElement("h5");
-        h5.append(order.customerName);
-        h5.setAttribute("id", order.orderId);
-        orderList.append(h5);
-    })
+    orderList.appendChild(pizzaOrderDiv);
 }
 
 
 window.addEventListener("load", function () {
     orderButton = document.querySelector("form");
     orderButton.addEventListener("submit", handleOrder);
-    quantityButton = document.getElementById("quantity");
-    quantityButton.addEventListener("input", updatePizzaDetailDisplay);
-    pizzasOrdered = document.querySelector("div#orders");
-    pizzasOrdered.addEventListener("click", displayOrderDetails);
+    quantityIncreaseButton = document.getElementById("quantity");
+    quantityIncreaseButton.addEventListener("input", updatePizzaDetailCount);
+    orderNameDetails = document.querySelector("div#orders");
+    orderNameDetails.addEventListener("click", displayOrderedPizzaDetails);
 }) 
