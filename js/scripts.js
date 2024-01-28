@@ -231,12 +231,16 @@ function displayOrderDetails(event) {
     const id = (event.target.id);
 
     // Get Pizza Order Div
-    let pizzaOrderDiv = document.getElementById("orderDetailsDisplay");
-    console.log(pizzaOrderDiv);
+    let orderList = document.querySelector("div#orders");
+    let pizzaOrderDiv = document.createElement("div");
+    pizzaOrderDiv.setAttribute("id", "orderDetailsDisplay");
+    pizzaOrderDiv.setAttribute("class", "card");
+    orderList.appendChild(pizzaOrderDiv);
+
+    // let pizzaOrderDiv = document.getElementById("orderDetailsDisplay");
 
     // Display Order Name
     const orderValue = currentOrders.orders[id].customerName;
-    console.log(orderValue);
     const orderNameElement = document.createElement("h6");
     orderNameElement.textContent = "Order Name:" + " " + orderValue;
     pizzaOrderDiv.appendChild(orderNameElement);
@@ -287,10 +291,6 @@ function displayPizzasOrdered(currentOrders) {
         h5.setAttribute("id", order.orderId);
         orderList.append(h5);
     })
-
-    const orderDetailsDiv = document.createElement("div");
-    orderDetailsDiv.setAttribute("id", "orderDetailsDisplay");
-    orderList.appendChild(orderDetailsDiv);
 }
 
 

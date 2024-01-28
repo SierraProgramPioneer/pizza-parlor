@@ -64,4 +64,6 @@ hr {
 
 .card {
     color: black;
+    background-color: #c5c1b4;
+    padding: 10px;
 }
