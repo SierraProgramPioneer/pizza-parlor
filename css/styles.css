@@ -1,6 +1,6 @@
 body {
     background-color: rgb(192, 136, 68);
-
+    background-image: url('../images/pizza.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
